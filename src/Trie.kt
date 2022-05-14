@@ -2,7 +2,7 @@ class Trie {
     private val root = TrieNode()
     fun insert(ip_address: String) {
         var current: TrieNode? = root
-        for (i in 0 until ip_address.length) {
+        for (i in ip_address.indices) {
             if (ip_address[i] == '.') continue
             if (ip_address[i] == '0') { // left
                 if (current!!.left == null) current.left = TrieNode()

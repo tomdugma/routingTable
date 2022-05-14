@@ -30,10 +30,6 @@ class main {
         }
 
         // local tests
-
-        // local tests
-
-        // local tests
         val validIp: String = convertIpToBinary("192.1.1.0")
         val validIp2: String = convertIpToBinary("255.255.255.1")
         val validIp3: String = convertIpToBinary("255.255.255.100")
@@ -57,29 +53,29 @@ class main {
         return addr
     }
 
-        fun convertWIthMask(addr: String): String {
-            val parts: Array<String> = addr.split("/").toTypedArray()
-            var mask: Int = parts[1].toInt()
-            val ip = parts[0]
-            val ipArray: Array<String> = ip.split("\\.").toTypedArray()
-            val ipArrayInBinary = ArrayList<String>()
-            for (s in ipArray) {
-                if (mask == 0) break
-                val temp: Int = s.toInt()
-                if (temp >= 0 && temp <= 255) {
-                    val currByte = StringBuilder()
-                    val tmp: String = String.format("%8s", Integer.toBinaryString(temp)).replace(' ', '0')
-                    for (i in 0 until tmp.length) {
-                        if (mask > 0) {
-                            currByte.append(tmp[i])
-                            mask--
-                        } else break
-                    }
-                    ipArrayInBinary.add(currByte.toString())
+    private fun convertWIthMask(addr: String): String {
+        val parts: Array<String> = addr.split("/").toTypedArray()
+        var mask: Int = parts[1].toInt()
+        val ip = parts[0]
+        val ipArray: Array<String> = ip.split("\\.").toTypedArray()
+        val ipArrayInBinary = ArrayList<String>()
+        for (s in ipArray) {
+            if (mask == 0) break
+            val temp: Int = s.toInt()
+            if (temp >= 0 && temp <= 255) {
+                val currByte = StringBuilder()
+                val tmp: String = String.format("%8s", Integer.toBinaryString(temp)).replace(' ', '0')
+                for (element in tmp) {
+                    if (mask > 0) {
+                        currByte.append(element)
+                        mask--
+                    } else break
                 }
+                ipArrayInBinary.add(currByte.toString())
             }
-            val final_str = java.lang.String.join(".", ipArrayInBinary)
-            println(final_str)
-            return final_str
         }
+        val final_str = java.lang.String.join(".", ipArrayInBinary)
+        println(final_str)
+        return final_str
     }
+}
