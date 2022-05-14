@@ -10,7 +10,7 @@ class main {
     init {
         /**
          * at first, I was planning you use a Trie data structure,
-         * where each node will have an hash map of 10 entrances (0 .. 9)
+         * where each node will have a hash map of 10 entrances (0 .. 9)
          * on second thought I went on a simple binary tree
          * yes its HUGE memory consuming, but searching is at max O(32)
          * O(32) for IPv4 according to the length of the ip format
@@ -62,7 +62,7 @@ class main {
         for (s in ipArray) {
             if (mask == 0) break
             val temp: Int = s.toInt()
-            if (temp >= 0 && temp <= 255) {
+            if (temp in 0..255) {
                 val currByte = StringBuilder()
                 val tmp: String = String.format("%8s", Integer.toBinaryString(temp)).replace(' ', '0')
                 for (element in tmp) {
